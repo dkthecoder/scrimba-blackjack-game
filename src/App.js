@@ -1,3 +1,4 @@
+import { render } from '@testing-library/react';
 import './App.css';
 
 let hasBlackJack = false;
@@ -5,19 +6,30 @@ let isAlive = true;
 let message = "";
 let sum = 0;
 
+//blackjack function variables
+let firstCard = getRandomCard();
+let secondCard = getRandomCard();
+sum = firstCard + secondCard;
+
+//card array
+let cards = [firstCard, secondCard];
+
 //message output to frontend
 let messageEl = document.getElementById("message-el");
 let sumEl = document.querySelector("sum-el");
 let cardsEl = document.getElementById("cards-el");
 
-function startGame(firstCard, secondCard){
-  let sum = firstCard + secondCard;
-  cardsEl.textContent = "Cards: " + firstCard + " " + secondCard;
-  sumEl.textContent = "Sum: " + sum;
-  check(sum);
+function startGame(){
+  renderGame(sum);
 }
 
-function check(num) {
+function renderGame(num) {
+  for(let i = 0; i < cards.length; i++){
+    cardsEl.textContent += cards[i] + " ";
+  }
+
+  sumEl.textContent = "Sum: " + sum;
+
   if (num === 21) {
     message = "win";
     hasBlackJack = true;
@@ -33,6 +45,14 @@ function check(num) {
 }
 
 function newCard(){
+  console.log("Drawing a new card from the deck!")
+  let card = getRandomCard();
+  sum += card;
+  card.push(card);
+  startGame()
+}
+
+function getRandomCard(){
   
 }
 
