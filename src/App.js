@@ -7,6 +7,10 @@ let hasBlackJack = false;
 let isAlive = true;
 let message = "";
 
+function startGame(){
+  
+}
+
 function check(num) {
   if (num === 21) {
     message = "win 🥳";
@@ -41,6 +45,7 @@ function App() {
           <p>Cards:</p>
           <p>Sum:</p>
         </div>
+        <button onClick={startGame()}>play</button>
       </header>
     </div>
   );

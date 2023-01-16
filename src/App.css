@@ -3,7 +3,10 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-image: url("/public/1765802.jpg");
+  background-size: cover;
+  font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,6 +23,16 @@
 h1 {
   color: goldenrod;
 }
-body {
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+
+button {
+  color: #016f32;
+  width: 150px;
+  height: 100;
+  background-color: goldenrod;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: large;
+  border: none;
+  border-radius: 4px;
 }
