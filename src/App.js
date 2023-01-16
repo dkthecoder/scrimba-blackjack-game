@@ -1,38 +1,39 @@
 import './App.css';
 
-let firstCard = 0;
-let secondCard = 0;
-let sum = firstCard + secondCard;
 let hasBlackJack = false;
 let isAlive = true;
 let message = "";
+let sum = 0;
 
-function startGame(){
-  
+//message output to frontend
+let messageEl = document.getElementById("message-el");
+let sumEl = document.querySelector("sum-el");
+let cardsEl = document.getElementById("cards-el");
+
+function startGame(firstCard, secondCard){
+  let sum = firstCard + secondCard;
+  cardsEl.textContent = "Cards: " + firstCard + " " + secondCard;
+  sumEl.textContent = "Sum: " + sum;
+  check(sum);
 }
 
 function check(num) {
   if (num === 21) {
-    message = "win 🥳";
+    message = "win";
     hasBlackJack = true;
   }
   else if (num < 21) {
-    message = "continue 🙂";
+    message = "continue";
   }
   else {
-    message = "out of the game 😭";
+    message = "out of the games";
     isAlive = false;
   }
+  messageEl.textContent = message;
 }
 
-console.log(message);
-
-function reset() {
-  firstCard = 0;
-  secondCard = 0;
-  hasBlackJack = false;
-  isAlive = true;
-  message = "";
+function newCard(){
+  
 }
 
 function App() {
@@ -42,10 +43,11 @@ function App() {
         <h1>BlackJack</h1>
         <div>
           <p id="message-el">Want to play a round?</p>
-          <p>Cards:</p>
-          <p>Sum:</p>
+          <p id="cards-el">Cards:</p>
+          <p id="sum-el">Sum:</p>
         </div>
         <button onClick={startGame()}>play</button>
+        <button onClick={newCard()}>New Card</button>
       </header>
     </div>
   );
