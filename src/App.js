@@ -8,8 +8,13 @@ let sum = 0;
 //player object
 let player = {
   name: "barry",
-  chips:  200
+  chips:  200,
+  sayHello: function(){
+    console.log("namaste");
+  }
 }
+
+player.sayHello();
 
 //card array
 let cards = [];
