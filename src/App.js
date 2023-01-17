@@ -2,24 +2,32 @@ import { render } from '@testing-library/react';
 import './App.css';
 
 let hasBlackJack = false;
-let isAlive = true;
+let isAlive = false;
 let message = "";
 let sum = 0;
-
-//blackjack function variables
-let firstCard = getRandomCard();
-let secondCard = getRandomCard();
-sum = firstCard + secondCard;
+//player object
+let player = {
+  name: "barry",
+  chips:  200
+}
 
 //card array
-let cards = [firstCard, secondCard];
+let cards = [];
 
 //message output to frontend
 let messageEl = document.getElementById("message-el");
 let sumEl = document.querySelector("sum-el");
 let cardsEl = document.getElementById("cards-el");
 
+let playerEl = document.getElementById("player-el");
+playerEl.textContent = player.name + ": $" + player.chips;
+
 function startGame(){
+  isAlive = true;
+  let firstCard = getRandomCard();
+  let secondCard = getRandomCard();
+  cards = [firstCard, secondCard];
+  sum = firstCard + secondCard;
   renderGame(sum);
 }
 
@@ -45,11 +53,14 @@ function renderGame(num) {
 }
 
 function newCard(){
-  console.log("Drawing a new card from the deck!")
-  let card = getRandomCard();
-  sum += card;
-  card.push(card);
-  startGame()
+  if(isAlive === true && hasBlackJack === false){
+    console.log("Drawing a new card from the deck!")
+    let card = getRandomCard();
+    sum += card;
+    card.push(card);
+    renderGame();
+  }
+
 }
 
 function getRandomCard(){
@@ -75,6 +86,7 @@ function App() {
         </div>
         <button onClick={startGame()}>play</button>
         <button onClick={newCard()}>New Card</button>
+        <p id="player-el"></p>
       </header>
     </div>
   );
